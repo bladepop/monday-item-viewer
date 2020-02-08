@@ -15,7 +15,6 @@ function App() {
 
   // View State Manager
   const {
-    item,
     title,
     updates,
     update,
