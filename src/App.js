@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import React from "react";
+
 // import useMondayBoardItems from './hooks/useMondayBoardItems';
 import useMondayBoardItems from "./hooks/mockData";
 import useViewState from "./hooks/useViewState";

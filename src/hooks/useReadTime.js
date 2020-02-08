@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-const WORDS_PER_MINUTE = 200;
+const WORDS_PER_MINUTE = 150;
 
 const useReadTime = (string) => useMemo(() => {
     const wordCount = string.split(' ').length;
