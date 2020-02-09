@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const ListWrapper = styled.div`
@@ -9,12 +8,12 @@ const ListWrapper = styled.div`
   margin: 16px;
   max-width: 260px;
 `;
-const ListHeader = styled.div`
-  font-size: 20px;
-  font-weight: 200;
-  padding: 8px 0;
-  /* background: #eaeaea; */
-`;
+// const ListHeader = styled.div`
+//   font-size: 20px;
+//   font-weight: 200;
+//   padding: 8px 0;
+//   /* background: #eaeaea; */
+// `;
 
 const ItemWrapper = styled.div`
   font-weight: ${({ selected }) => (selected ? "400" : "300")};

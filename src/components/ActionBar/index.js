@@ -54,14 +54,14 @@ const BrandLogo = styled.div`
   align-items: center;
 `;
 
-const BrandImage = styled.img`
-  height: 16px;
-  background: #f5f6f8;
+// const BrandImage = styled.img`
+//   height: 16px;
+//   background: #f5f6f8;
 
-  border-radius: 50%;
-  padding: 2px 2px;
-  box-shadow: 0 0 5px 0 #d4d4d4;
-`;
+//   border-radius: 50%;
+//   padding: 2px 2px;
+//   box-shadow: 0 0 5px 0 #d4d4d4;
+// `;
 
 const BrandText = styled.div`
   color: #bbbbbb;
