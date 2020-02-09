@@ -9,6 +9,7 @@ import Content from "./components/Content";
 export const UpdateViewWrapper = styled.div`
   margin: 0 auto;
   max-width: 680px;
+  width: 100vw;
 `;
 
 const UpdateView = ({ title, update, handleChange, updates, readTime }) => (

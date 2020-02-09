@@ -1,7 +1,7 @@
-import { useReducer } from "react";
+import { useReducer, useMemo } from "react";
 import useReadTime from "./useReadTime";
 
-const useViewState = (items) => {
+const useViewState = items => {
   const [{ itemIndex, updateIndex }, setViewState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     { itemIndex: 0, updateIndex: 0 }
@@ -14,13 +14,38 @@ const useViewState = (items) => {
 
   const readTime = useReadTime(updateBody);
 
-  const handleChange = event => {
+  // TODO: Use ID instead of creation time
+  const selectUpdate = updateCreationTime => {
     for (let i = 0; i < updates.length; i++) {
-      if (updates[i].createdAt === event.target.value) {
+      if (updates[i].createdAt === updateCreationTime) {
         setViewState({ updateIndex: i });
       }
     }
   };
+
+  // TODO: Use ID instead of name
+  const selectItem = itemName => {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].name === itemName) {
+        setViewState({ itemIndex: i, updateIndex: 0 });
+      }
+    }
+  };
+
+  const groups = useMemo(
+    () =>
+      items.reduce((accumulator, item) => {
+        // console.log(item);
+        // debugger;
+        accumulator[item.group.id] = accumulator[item.group.id] || {
+          ...item.group,
+          items: []
+        };
+        accumulator[item.group.id].items.push(item);
+        return accumulator;
+      }, {}),
+    [items]
+  );
 
   const decrementItemIndex = () =>
     setViewState({ itemIndex: itemIndex - 1, updateIndex: 0 });
@@ -36,12 +61,14 @@ const useViewState = (items) => {
 
   return {
     item,
+    groups,
     title,
     updates,
     update,
     updateBody,
     readTime,
-    handleChange,
+    selectUpdate,
+    selectItem,
     itemIndex,
     updateIndex,
     decrementItemIndex,

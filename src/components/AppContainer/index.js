@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "typeface-roboto";
 
 const AppContainer = styled.div`
   background: rgba(255, 255, 255, 1);

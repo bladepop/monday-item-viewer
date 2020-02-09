@@ -19,8 +19,15 @@ const useMondayBoardItems = (client_id) => {
         `query {
         boards(ids: [${context.boardId}]) {
           items {
+            id
             name
+            group {
+              id
+              color
+              title
+            }
             updates {
+              id
               body
               createdAt: created_at
               creator {
