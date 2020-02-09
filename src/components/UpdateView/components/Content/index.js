@@ -16,6 +16,10 @@ const ContentWrapper = styled.div`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 
+    h4 {
+      font-size: 26px;
+    }
+
     .text-center {
       text-align: center;
       img {
@@ -59,7 +63,7 @@ const ContentWrapper = styled.div`
       background: #fbcb00; /* WebKit/Blink Browsers */
     }
 
-    pre {
+    pre, pre * {
       background: #f5f5f5;
       padding: 24px;
       font-size: 14px;
