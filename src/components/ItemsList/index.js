@@ -1,20 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListWrapper = styled.div`
-  flex-grow: 1;
-  height: 100%;
-  /* background: #fbfbfb; */
-  margin: 16px;
-  max-width: 260px;
-`;
-// const ListHeader = styled.div`
-//   font-size: 20px;
-//   font-weight: 200;
-//   padding: 8px 0;
-//   /* background: #eaeaea; */
-// `;
-
 const ItemWrapper = styled.div`
   font-weight: ${({ selected }) => (selected ? "400" : "300")};
   height: 32px;
@@ -55,17 +41,16 @@ const Item = ({ name, selected, color, onClick }) => (
 );
 
 const GroupTitle = styled.div`
-    margin-top: 16px;
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 300;
-    overflow: hidden;
-    white-space: nowrap;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 300;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const ItemsList = ({ groups, selectedItem, handleChange }) => (
-  <ListWrapper>
-    {/* <ListHeader>Search...</ListHeader> */}
+  <React.Fragment>
     {Object.keys(groups).map(groupId => (
       <React.Fragment key={groupId}>
         <GroupTitle>{groups[groupId].title}</GroupTitle>
@@ -82,7 +67,7 @@ const ItemsList = ({ groups, selectedItem, handleChange }) => (
         </React.Fragment>
       </React.Fragment>
     ))}
-  </ListWrapper>
+  </React.Fragment>
 );
 
 export default ItemsList;

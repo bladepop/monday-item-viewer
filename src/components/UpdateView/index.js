@@ -10,6 +10,7 @@ export const UpdateViewWrapper = styled.div`
   margin: 0 auto;
   max-width: 680px;
   width: 100vw;
+  margin-bottom: 150px;
 `;
 
 const UpdateView = ({ title, update, handleChange, updates, readTime }) => (

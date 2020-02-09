@@ -1,30 +1,19 @@
 import React, { useRef } from "react";
-import styled from "styled-components";
 import "typeface-roboto";
 
 import useMondayBoardItems from "./hooks/useMondayBoardItems";
 // import useMondayBoardItems from "./hooks/mockData";
 import useViewState from "./hooks/useViewState";
-import useScrollToTop from './hooks/useScrollToTop';
+import useScrollToTop from "./hooks/useScrollToTop";
 
 import AppContainer from "./components/AppContainer";
 import ActionBar from "./components/ActionBar";
 import UpdateView from "./components/UpdateView";
 import ItemsList from "./components/ItemsList";
-import Loader from './components/Loader';
+import Loader from "./components/Loader";
+import { FlexLayout, ListWrapper, UpdateWrapper } from "./components/Layout";
 
 import { CLIENT_ID } from "./config";
-
-const FlexLayout = styled.div`
-  display: flex;
-`;
-
-const Centered = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: calc(100vw - 500px);
-`;
-
 
 function App() {
   // Data Provider
@@ -75,13 +64,15 @@ function App() {
         }}
       />
       <FlexLayout>
-        <ItemsList
-          items={items}
-          groups={groups}
-          selectedItem={item}
-          handleChange={onSelectItem}
-        />
-        <Centered>
+        <ListWrapper>
+          <ItemsList
+            items={items}
+            groups={groups}
+            selectedItem={item}
+            handleChange={onSelectItem}
+          />
+        </ListWrapper>
+        <UpdateWrapper>
           <UpdateView
             handleChange={event => selectUpdate(event.target.value)}
             title={title}
@@ -89,7 +80,7 @@ function App() {
             update={update}
             updates={updates}
           />
-        </Centered>
+        </UpdateWrapper>
       </FlexLayout>
     </AppContainer>
   );
