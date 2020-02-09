@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const ListWrapper = styled.div`
+const FlexLayout = styled.div`
   display: flex;
 `;
 
-export default ListWrapper;
+export default FlexLayout;
