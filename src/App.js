@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import "typeface-roboto";
 
-import useMondayBoardItems from "./hooks/useMondayBoardItems";
-// import useMondayBoardItems from "./hooks/mockData";
+// import useMondayBoardItems from "./hooks/useMondayBoardItems";
+import useMondayBoardItems from "./hooks/mockData";
 import useViewState from "./hooks/useViewState";
 import useScrollToTop from './hooks/useScrollToTop';
 

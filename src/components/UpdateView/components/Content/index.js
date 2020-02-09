@@ -16,6 +16,13 @@ const ContentWrapper = styled.div`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 
+    .text-center {
+      text-align: center;
+      img {
+        margin: 0;
+      }
+    }
+
     .ql-editor {
       padding: 0 !important;
 
