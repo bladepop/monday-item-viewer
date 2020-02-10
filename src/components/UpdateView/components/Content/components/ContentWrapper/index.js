@@ -14,34 +14,46 @@ const ContentWrapper = styled.div`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 
-    h1, h1 * {
+    span.inline-code {
+      padding: 0.2rem 0.4rem;
+      font-size: 90%;
+      color: #bd4147;
+      background-color: #f8f9fa;
+      border-radius: 0.25rem;
+    }
+
+    h1,
+    h1 * {
       font-size: 32px;
     }
 
-    h2, h2 * {
+    h2,
+    h2 * {
       font-size: 30px;
     }
 
-    h3, h3 * {
+    h3,
+    h3 * {
       font-size: 28px;
     }
 
-    h4, h4 * {
+    h4,
+    h4 * {
       font-size: 26px;
     }
 
     table {
-        width: 100%;
-        border-left: 1px solid #969696;
-        border-top: 1px solid #969696;
-        border-spacing: 0;
-        margin: 8px 0;
+      width: 100%;
+      border-left: 1px solid #969696;
+      border-top: 1px solid #969696;
+      border-spacing: 0;
+      margin: 8px 0;
 
-        td {
-            border-right: 1px solid #969696;
-            border-bottom: 1px solid #969696;
-            padding: 4px 12px;
-        }
+      td {
+        border-right: 1px solid #969696;
+        border-bottom: 1px solid #969696;
+        padding: 4px 12px;
+      }
     }
 
     .text-center {
@@ -88,10 +100,12 @@ const ContentWrapper = styled.div`
     }
 
     pre {
-      background: rgb(245, 245, 245);;
+      background: rgb(245, 245, 245);
       padding: 24px;
+      border-radius: 16px;
 
-      &, & * {  
+      &,
+      & * {
         font-size: 14px;
         font-family: monospace;
         overflow: auto;
@@ -99,13 +113,12 @@ const ContentWrapper = styled.div`
       }
     }
 
-    
-
     blockquote {
       border-left: 4px solid #c4c4c4;
       padding-left: 24px;
       margin-left: 4px;
-      &, & * {
+      &,
+      & * {
         color: #5d5d5d;
       }
     }
