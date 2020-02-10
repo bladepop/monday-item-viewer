@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const FlexRow = styled.div`
-  display: flex;
+  display: ${({hide}) => hide ? 'none' : 'flex'};
   justify-content: space-between;
   padding: 16px;
   align-items: center;
@@ -11,7 +11,7 @@ const FlexRow = styled.div`
 `;
 
 const FlexItem = styled.div`
-  display: flex;
+  display: ${({hide}) => hide ? 'none' : 'flex'};
   align-items: center;
 `;
 
@@ -79,9 +79,12 @@ const ActionBar = ({
     updateIndex,
     itemsLength,
     updatesLength
-  }
+  },
+  hide,
+  compact,
+  ...rest
 }) => (
-  <FlexRow>
+  <FlexRow hide={hide} {...rest}>
     <FlexItem>
       <Button onClick={decrementItemIndex} disabled={itemIndex === 1}>
         {" "}
@@ -94,7 +97,7 @@ const ActionBar = ({
         Next Item {">>"}
       </Button>
     </FlexItem>
-    <FlexItem>
+    <FlexItem hide={compact}>
       <BrandLogo>
         <BrandText>Use the list on the left to select an item you'd like to read</BrandText>
         {/* <BrandImage src="https://monday.monday.com/images/logos/monday_logo_icon.png" /> */}
@@ -119,7 +122,9 @@ const ActionBar = ({
 );
 
 ActionBar.propTypes = {
-  options: PropTypes.object.isRequired
+  options: PropTypes.object.isRequired,
+  hide: PropTypes.bool,
+  compact: PropTypes.bool,
 };
 
 export default ActionBar;

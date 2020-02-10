@@ -61,7 +61,7 @@ const ItemsList = ({ groups, selectedItem, handleChange }) => (
               selected={item === selectedItem}
               name={item.name}
               color={item.group.color}
-              onClick={() => handleChange(item.name)}
+              onClick={() => handleChange(item.id)}
             />
           ))}
         </React.Fragment>

@@ -19,7 +19,7 @@ const Details = ({ update, handleChange, updates, readTime }) => (
     <UpdateSelector
       handleChange={handleChange}
       updates={updates}
-      selectedValue={update.createdAt}
+      selectedValue={update.id}
     />
   </DetailsBarWrapper>
 );

@@ -7,9 +7,10 @@ import Details from "./components/Details";
 import Content from "./components/Content";
 
 export const UpdateViewWrapper = styled.div`
-  margin: 0 auto;
+  /* margin: 0 auto; */
   max-width: 680px;
   width: 100vw;
+  margin-top: 40px;
   margin-bottom: 150px;
 `;
 

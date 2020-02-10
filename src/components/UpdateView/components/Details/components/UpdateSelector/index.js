@@ -24,7 +24,7 @@ const Option = styled.option`
 const UpdateSelector = ({ handleChange, updates, selectedValue }) => (
     <Select onChange={handleChange} value={selectedValue}>
       {updates.map(update => (
-        <Option key={update.createdAt} value={update.createdAt}>
+        <Option key={update.id} value={update.id}>
           {new Date(update.createdAt).toLocaleString()}
         </Option>
       ))}
