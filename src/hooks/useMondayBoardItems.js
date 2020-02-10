@@ -29,6 +29,7 @@ const useMondayBoardItems = (client_id) => {
             updates {
               id
               body
+              text_body
               createdAt: created_at
               creator {
                 name

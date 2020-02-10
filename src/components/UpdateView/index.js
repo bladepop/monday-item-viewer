@@ -17,7 +17,7 @@ const UpdateView = ({ title, update, handleChange, updates, readTime }) => (
   <UpdateViewWrapper>
     <Title>{title}</Title>
     <Details {...{ update, handleChange, updates, readTime }} />
-    <Content html={update.body} />
+    <Content html={update.body} text={update.text_body}/>
   </UpdateViewWrapper>
 );
 
