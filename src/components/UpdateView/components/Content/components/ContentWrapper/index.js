@@ -22,24 +22,28 @@ const ContentWrapper = styled.div`
       border-radius: 0.25rem;
     }
 
+    h1,h2,h3,h4 {
+        margin: 0;
+    }
+
     h1,
     h1 * {
-      font-size: 32px;
+      font-size: 32px!important;
     }
 
     h2,
     h2 * {
-      font-size: 30px;
+      font-size: 30px!important;
     }
 
     h3,
     h3 * {
-      font-size: 28px;
+      font-size: 28px!important;
     }
 
     h4,
     h4 * {
-      font-size: 26px;
+      font-size: 26px!important;
     }
 
     table {
@@ -71,22 +75,24 @@ const ContentWrapper = styled.div`
         padding-left: 0.5em;
       }
 
-      li::before {
-        width: initial;
-        vertical-align: middle;
-        line-height: 24px;
-        margin-left: -1em;
-        margin-right: 0.8em;
-        transform: scale(2);
-      }
-      li.ql-indent-1:not(.ql-direction-rtl) {
-        padding-left: 3em;
-      }
-      li.ql-indent-2:not(.ql-direction-rtl) {
-        padding-left: 4.5em;
-      }
-      li.ql-indent-3:not(.ql-direction-rtl) {
-        padding-left: 6em;
+      ul {
+        li::before {
+          width: initial;
+          vertical-align: middle;
+          line-height: 24px;
+          margin-left: -1em;
+          margin-right: 0.8em;
+          transform: scale(2);
+        }
+        li.ql-indent-1:not(.ql-direction-rtl) {
+          padding-left: 3em;
+        }
+        li.ql-indent-2:not(.ql-direction-rtl) {
+          padding-left: 4.5em;
+        }
+        li.ql-indent-3:not(.ql-direction-rtl) {
+          padding-left: 6em;
+        }
       }
     }
 
@@ -100,15 +106,16 @@ const ContentWrapper = styled.div`
     }
 
     pre {
-      background: rgb(245, 245, 245);
-      padding: 24px;
-      border-radius: 16px;
+      background: rgb(245, 245, 245)!important;
+      padding: 24px!important;
+      border-radius: 16px!important;
 
       &,
       & * {
+        color: rgba(0, 0, 0, 0.84)!important;
         font-size: 14px;
         font-family: monospace;
-        overflow: auto;
+        overflow: auto !important;
         white-space: pre !important;
       }
     }
