@@ -22,28 +22,31 @@ const ContentWrapper = styled.div`
       border-radius: 0.25rem;
     }
 
-    h1,h2,h3,h4 {
-        margin: 0;
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
     }
 
     h1,
     h1 * {
-      font-size: 32px!important;
+      font-size: 32px !important;
     }
 
     h2,
     h2 * {
-      font-size: 30px!important;
+      font-size: 30px !important;
     }
 
     h3,
     h3 * {
-      font-size: 28px!important;
+      font-size: 28px !important;
     }
 
     h4,
     h4 * {
-      font-size: 26px!important;
+      font-size: 26px !important;
     }
 
     table {
@@ -99,6 +102,7 @@ const ContentWrapper = styled.div`
     p {
       margin-top: 18.5px;
       margin-bottom: 18.5px;
+      margin-block-start: 0;
     }
 
     &::selection {
@@ -106,13 +110,13 @@ const ContentWrapper = styled.div`
     }
 
     pre {
-      background: rgb(245, 245, 245)!important;
-      padding: 24px!important;
-      border-radius: 16px!important;
+      background: rgb(245, 245, 245) !important;
+      padding: 24px !important;
+      border-radius: 16px !important;
 
       &,
       & * {
-        color: rgba(0, 0, 0, 0.84)!important;
+        color: rgba(0, 0, 0, 0.84) !important;
         font-size: 14px;
         font-family: monospace;
         overflow: auto !important;
@@ -121,9 +125,11 @@ const ContentWrapper = styled.div`
     }
 
     blockquote {
-      border-left: 4px solid #c4c4c4;
-      padding-left: 24px;
-      margin-left: 4px;
+      border-left: 4px solid #c4c4c4 !important;
+      padding-left: 24px !important;
+      margin-left: 4px !important;
+      margin-bottom: 15px !important;
+      margin-top: 15px !important;
       &,
       & * {
         color: #5d5d5d;
@@ -138,7 +144,8 @@ const ContentWrapper = styled.div`
       box-shadow: 0 0 10px 0px #8c8c8c;
     }
 
-    strong {
+    strong,
+    b {
       font-weight: 500;
     }
   }

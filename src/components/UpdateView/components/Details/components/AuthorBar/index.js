@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const FlexBar = styled.div`
     display: flex;
-    margin-bottom: 32px;
+    align-self: flex-start;
 `;
 
 const Avatar = styled.img`

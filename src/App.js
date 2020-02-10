@@ -47,7 +47,7 @@ function App() {
   } = useViewState(items);
 
   const viewMode = useMedia(
-    ["(min-width: 1200px)", "(min-width: 1040px)", "(min-width: 800px)"],
+    ["(min-width: 1280px)", "(min-width: 1040px)", "(min-width: 800px)"],
     [VIEW_MODES.FULL, VIEW_MODES.LEAN, VIEW_MODES.MOBILE],
     VIEW_MODES.MOBILE
   );

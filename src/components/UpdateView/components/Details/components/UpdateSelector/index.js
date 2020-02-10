@@ -5,9 +5,9 @@ import styled from "styled-components";
 const Select = styled.select`
     border: none;
     background: #f7f7f7;
-    padding: 12px 10px;    
+    padding: 0 10px;    
     color: #565656;
-    height: 48px;
+    height: 32px;
     font-family: Roboto, serif;
     width: 200px;
 

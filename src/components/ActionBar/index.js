@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from '../Button';
 
 const FlexRow = styled.div`
   display: ${({hide}) => hide ? 'none' : 'flex'};
@@ -19,34 +20,6 @@ const StepIndicator = styled.div`
   margin: 0 8px;
   width: 64px;
   text-align: center;
-`;
-
-const Button = styled.button`
-  height: 32px;
-  border: 0;
-  background: #009aff;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 240px;
-  cursor: pointer;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    background: #0083d9;
-  }
-
-  &:active {
-    background: #03a9f4;
-  }
-
-  &:disabled {
-    background: #d4d4d4;
-    color: #5d5d5d;
-    cursor: not-allowed;
-  }
 `;
 
 const BrandLogo = styled.div`
