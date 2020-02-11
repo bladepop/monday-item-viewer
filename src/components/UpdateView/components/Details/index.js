@@ -7,6 +7,8 @@ import UpdateSelector from "./components/UpdateSelector";
 const DetailsBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
 `;
 
 const Details = ({ update, handleChange, updates, readTime }) => (
