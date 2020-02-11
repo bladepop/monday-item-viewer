@@ -92,11 +92,13 @@ function App() {
           standAlone={viewMode === VIEW_MODES.FULL ? false : true}
         >
           <UpdateView
+            key={update.id}
             handleChange={event => selectUpdate(event.target.value)}
             title={title}
             readTime={readTime}
             update={update}
             updates={updates}
+            onSave={(newValue) => { console.log(newValue); return false; }}
           />
         </UpdateWrapper>
       </FlexLayout>

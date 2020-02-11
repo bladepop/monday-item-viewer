@@ -1,17 +1,19 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import ReadOnlyText from "./components/ReadOnlyText";
+import Editor from "./components/Editor";
 import ContentWrapper from "./components/ContentWrapper";
 
-
-const Content = ({ html }) => (
+const Content = ({ html, isEditing, onChange }) => (
   <ContentWrapper>
-    <ReadOnlyText html={html} />
+    {isEditing ? <Editor html={html} onChange={onChange} /> : <ReadOnlyText html={html} />}
   </ContentWrapper>
 );
 
 Content.propTypes = {
   html: PropTypes.string.isRequired,
-}
+  isEditing: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 
 export default Content;

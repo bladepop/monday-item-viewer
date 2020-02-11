@@ -44,6 +44,13 @@ const useMondayBoardItems = (client_id) => {
       });
   }, [context.boardId]);
 
+  /*
+    TODO:
+    1) Mutation to add update and receive newly created update
+    2) Add new update to items collection on the relevant item
+    3) Outside, switch to the newly created update
+  */
+
   const isReady = items.length > 0;
 
   return [items, isReady];
