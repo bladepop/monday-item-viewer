@@ -102,7 +102,7 @@ function App() {
             readTime={readTime}
             update={update}
             updates={updates}
-            showEdit={false} //Disabled until updates:write scope is granted to apps
+            showEdit={true} //Disabled until updates:write scope is granted to apps
             onSave={(newValue) => { console.log(newValue); createNewUpdate(item.id, newValue); return true; }}
           />
         </UpdateWrapper>
