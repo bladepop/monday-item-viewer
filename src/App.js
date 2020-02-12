@@ -27,8 +27,8 @@ const ACTION_BAR_HEIGHT = '65px';
 function App() {
   // Data Provider
   const [items, isItemsReady, openItem, createNewUpdate] = useMondayBoardItems(CLIENT_ID);
-  const appContainerEl = useRef(null);
-  const scrollToTop = useScrollToTop(appContainerEl.current);
+  const updateWrapperRef = useRef(null);
+  const scrollToTop = useScrollToTop(updateWrapperRef.current);
 
   // View State Manager
   const {
@@ -55,6 +55,26 @@ function App() {
   );
 
   const openCurrentItem = useCallback(() => { openItem(item.id) }, [openItem, item]);
+  
+  const memoDecrementItemIndex = useCallback(() => {
+    decrementItemIndex();
+    scrollToTop();
+  }, [scrollToTop, decrementItemIndex]);
+
+  const memoIncrementItemIndex = useCallback(() => {
+    incrementItemIndex();
+    scrollToTop();
+  }, [scrollToTop, incrementItemIndex]);
+
+  const memoDecremetUpdateIndex = useCallback(() => {
+    decremetUpdateIndex();
+    scrollToTop();
+  }, [scrollToTop, decremetUpdateIndex]);
+
+  const memoIncrementUpdateIndex = useCallback(() => {
+    incrementUpdateIndex();
+    scrollToTop();
+  }, [scrollToTop, incrementUpdateIndex]);
 
   if (!isItemsReady) {
     return <Loader text={"Loading board content"} />;
@@ -68,16 +88,16 @@ function App() {
 
   // View
   return (
-    <AppContainer ref={appContainerEl}>
+    <AppContainer>
       <ActionBar
         hide={viewMode === VIEW_MODES.FULL}
         compact={viewMode === VIEW_MODES.MOBILE}
         height={ACTION_BAR_HEIGHT}
         options={{
-          decrementItemIndex,
-          incrementItemIndex,
-          decremetUpdateIndex,
-          incrementUpdateIndex,
+          decrementItemIndex: memoDecrementItemIndex,
+          incrementItemIndex: memoIncrementItemIndex,
+          decremetUpdateIndex: memoDecremetUpdateIndex,
+          incrementUpdateIndex: memoIncrementUpdateIndex,
           itemIndex: itemIndex + 1,       // To display 1 instead of 0 to the user
           updateIndex: updateIndex + 1,   // To display 1 instead of 0 to the user
           itemsLength: items.length,
@@ -96,6 +116,7 @@ function App() {
         <UpdateWrapper
           heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : ACTION_BAR_HEIGHT}
           standAlone={viewMode !== VIEW_MODES.FULL}
+          ref={updateWrapperRef}
         >
           <UpdateView
             key={update.id}
