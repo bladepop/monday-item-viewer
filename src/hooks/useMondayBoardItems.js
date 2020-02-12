@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from "react";
 import monday from "monday-sdk";
 
+const openItem = (itemId) => { monday.execute("openItemCard", { itemId }); };
+
 const useMondayBoardItems = (client_id) => {
   const [context, setContext] = useState({});
   useEffect(() => {
@@ -77,7 +79,7 @@ const useMondayBoardItems = (client_id) => {
 
   const isReady = items.length > 0;
 
-  return [items, isReady, memoizedCreateNewUpdate];
+  return [items, isReady, openItem, memoizedCreateNewUpdate];
 };
 
 export default useMondayBoardItems;

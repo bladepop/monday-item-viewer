@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import "typeface-roboto";
 
 import useMondayBoardItems from "./hooks/useMondayBoardItems";
@@ -26,7 +26,7 @@ const ACTION_BAR_HEIGHT = '65px';
 
 function App() {
   // Data Provider
-  const [items, isItemsReady, createNewUpdate] = useMondayBoardItems(CLIENT_ID);
+  const [items, isItemsReady, openItem, createNewUpdate] = useMondayBoardItems(CLIENT_ID);
   const appContainerEl = useRef(null);
   const scrollToTop = useScrollToTop(appContainerEl.current);
 
@@ -53,6 +53,8 @@ function App() {
     [VIEW_MODES.FULL, VIEW_MODES.LEAN, VIEW_MODES.MOBILE],
     VIEW_MODES.MOBILE
   );
+
+  const openCurrentItem = useCallback(() => { openItem(item.id) }, [openItem, item]);
 
   if (!isItemsReady) {
     return <Loader text={"Loading board content"} />;
@@ -103,6 +105,7 @@ function App() {
             update={update}
             updates={updates}
             showEdit={false} //Disabled until updates:write scope is granted to apps
+            onOpenItem={openCurrentItem}
             onSave={(newValue) => { console.log(newValue); createNewUpdate(item.id, newValue); return true; }}
           />
         </UpdateWrapper>

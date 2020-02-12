@@ -64,7 +64,8 @@ const Details = ({
   onEditCancelClick,
   onEditSaveClick,
   isEditing,
-  showEdit
+  showEdit,
+  onOpenItem
 }) => (
   <DetailsBarWrapper>
     <AuthorBar
@@ -87,14 +88,16 @@ const Details = ({
         />
       ) : null}
 
-      {showEdit
-        ? renderEditActions(
-            onEditStartClick,
-            onEditCancelClick,
-            onEditSaveClick,
-            isEditing
-          )
-        : null}
+      {showEdit ? (
+        renderEditActions(
+          onEditStartClick,
+          onEditCancelClick,
+          onEditSaveClick,
+          isEditing
+        )
+      ) : (
+        <EditButton onClick={onOpenItem}>View Item</EditButton>
+      )}
     </DetailsActionsWrapper>
   </DetailsBarWrapper>
 );
