@@ -22,6 +22,8 @@ const VIEW_MODES = {
   FULL: "full"
 };
 
+const ACTION_BAR_HEIGHT = '65px';
+
 function App() {
   // Data Provider
   const [items, isItemsReady] = useMondayBoardItems(CLIENT_ID);
@@ -67,6 +69,7 @@ function App() {
       <ActionBar
         hide={viewMode === VIEW_MODES.FULL}
         compact={viewMode === VIEW_MODES.MOBILE}
+        height={ACTION_BAR_HEIGHT}
         options={{
           decrementItemIndex,
           incrementItemIndex,
@@ -88,7 +91,7 @@ function App() {
           />
         </ListWrapper>
         <UpdateWrapper
-          heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : "65px"}
+          heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : ACTION_BAR_HEIGHT}
           standAlone={viewMode === VIEW_MODES.FULL ? false : true}
         >
           <UpdateView
