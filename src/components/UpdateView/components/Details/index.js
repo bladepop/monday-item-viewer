@@ -6,8 +6,9 @@ import UpdateSelector from "./components/UpdateSelector";
 
 import Button from "../../../Button";
 
-const DEFAULT_AUTHOR_NAME = 'No name';
-const DEFAULT_AUTHOR_THUMB_IMAGE = 'https://cdn1.monday.com/dapulse_default_photo.png';
+const DEFAULT_AUTHOR_NAME = "No name";
+const DEFAULT_AUTHOR_THUMB_IMAGE =
+  "https://cdn1.monday.com/dapulse_default_photo.png";
 
 const DetailsBarWrapper = styled.div`
   display: flex;
@@ -36,6 +37,24 @@ const CancelButton = styled(EditButton)`
   }
 `;
 
+const renderEditActions = (
+  onEditStartClick,
+  onEditCancelClick,
+  onEditSaveClick,
+  isEditing
+) => {
+  if (isEditing) {
+    return (
+      <React.Fragment>
+        <CancelButton onClick={onEditCancelClick}>Cancel</CancelButton>
+        <EditButton onClick={onEditSaveClick}>Save</EditButton>
+      </React.Fragment>
+    );
+  } else {
+    return <EditButton onClick={onEditStartClick}>Edit</EditButton>;
+  }
+};
+
 const Details = ({
   update,
   handleChange,
@@ -44,29 +63,38 @@ const Details = ({
   onEditStartClick,
   onEditCancelClick,
   onEditSaveClick,
-  isEditing
+  isEditing,
+  showEdit
 }) => (
   <DetailsBarWrapper>
     <AuthorBar
-      name={(update && update.creator) ? update.creator.name : DEFAULT_AUTHOR_NAME}
-      photoThumbUrl={(update && update.creator) ? update.creator.photoThumbUrl : DEFAULT_AUTHOR_THUMB_IMAGE}
+      name={
+        update && update.creator ? update.creator.name : DEFAULT_AUTHOR_NAME
+      }
+      photoThumbUrl={
+        update && update.creator
+          ? update.creator.photoThumbUrl
+          : DEFAULT_AUTHOR_THUMB_IMAGE
+      }
       readTime={readTime || 0}
     />
     <DetailsActionsWrapper>
-      {updates.length ? <UpdateSelector
-        handleChange={handleChange}
-        updates={updates}
-        selectedValue={update ? update.id : null}
-      /> : null}
+      {updates.length ? (
+        <UpdateSelector
+          handleChange={handleChange}
+          updates={updates}
+          selectedValue={update ? update.id : null}
+        />
+      ) : null}
 
-      {isEditing ? (
-        <React.Fragment>
-          <CancelButton onClick={onEditCancelClick}>Cancel</CancelButton>
-          <EditButton onClick={onEditSaveClick}>Save</EditButton>
-        </React.Fragment>
-      ) : (
-        <EditButton onClick={onEditStartClick}>Edit</EditButton>
-      )}
+      {showEdit
+        ? renderEditActions(
+            onEditStartClick,
+            onEditCancelClick,
+            onEditSaveClick,
+            isEditing
+          )
+        : null}
     </DetailsActionsWrapper>
   </DetailsBarWrapper>
 );

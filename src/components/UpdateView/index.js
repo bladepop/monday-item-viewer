@@ -26,7 +26,7 @@ const useEditState = (value, onSave = () => true) => {
   return [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit];
 };
 
-const UpdateView = ({ title, update, handleChange, updates, readTime, onSave }) => {
+const UpdateView = ({ title, update, handleChange, updates, readTime, onSave, showEdit }) => {
   const body = update ? update.body : "";
   const [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit] = useEditState(body, onSave);
 
@@ -34,7 +34,7 @@ const UpdateView = ({ title, update, handleChange, updates, readTime, onSave }) 
     <UpdateViewWrapper>
       <Title>{title}</Title>
       <Details
-        {...{ update, handleChange, updates, readTime, isEditing }}
+        {...{ update, handleChange, updates, readTime, isEditing, showEdit }}
         onEditStartClick={startEdit}
         onEditCancelClick={cancelEdit}
         onEditSaveClick={saveEdit}
