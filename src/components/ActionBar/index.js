@@ -6,9 +6,11 @@ import Button from '../Button';
 const FlexRow = styled.div`
   display: ${({hide}) => hide ? 'none' : 'flex'};
   justify-content: space-between;
-  padding: 16px;
+  padding: 0 16px;
   align-items: center;
   border-bottom: 1px solid #e6e9ef;
+  box-sizing: border-box;
+  height: ${({height}) => height};
 `;
 
 const FlexItem = styled.div`
@@ -27,19 +29,9 @@ const BrandLogo = styled.div`
   align-items: center;
 `;
 
-// const BrandImage = styled.img`
-//   height: 16px;
-//   background: #f5f6f8;
-
-//   border-radius: 50%;
-//   padding: 2px 2px;
-//   box-shadow: 0 0 5px 0 #d4d4d4;
-// `;
-
 const BrandText = styled.div`
   color: #bbbbbb;
   font-size: 12px;
-  /* margin-right: 8px; */
 `;
 
 const ActionBar = ({
@@ -55,9 +47,10 @@ const ActionBar = ({
   },
   hide,
   compact,
+  height,
   ...rest
 }) => (
-  <FlexRow hide={hide} {...rest}>
+  <FlexRow hide={hide} height={height} {...rest}>
     <FlexItem>
       <Button onClick={decrementItemIndex} disabled={itemIndex === 1}>
         {" "}
@@ -73,7 +66,6 @@ const ActionBar = ({
     <FlexItem hide={compact}>
       <BrandLogo>
         <BrandText>Use the list on the left to select an item you'd like to read</BrandText>
-        {/* <BrandImage src="https://monday.monday.com/images/logos/monday_logo_icon.png" /> */}
       </BrandLogo>
     </FlexItem>
     <FlexItem>

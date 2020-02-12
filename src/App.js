@@ -22,9 +22,11 @@ const VIEW_MODES = {
   FULL: "full"
 };
 
+const ACTION_BAR_HEIGHT = '65px';
+
 function App() {
   // Data Provider
-  const [items, isItemsReady] = useMondayBoardItems(CLIENT_ID);
+  const [items, isItemsReady, createNewUpdate] = useMondayBoardItems(CLIENT_ID);
   const appContainerEl = useRef(null);
   const scrollToTop = useScrollToTop(appContainerEl.current);
 
@@ -56,8 +58,9 @@ function App() {
     return <Loader text={"Loading board content"} />;
   }
 
-  const onSelectItem = item => {
-    selectItem(item);
+  //TODO: Fix this
+  const onSelectItem = selectedItem => {
+    selectItem(selectedItem);
     scrollToTop();
   };
 
@@ -67,13 +70,14 @@ function App() {
       <ActionBar
         hide={viewMode === VIEW_MODES.FULL}
         compact={viewMode === VIEW_MODES.MOBILE}
+        height={ACTION_BAR_HEIGHT}
         options={{
           decrementItemIndex,
           incrementItemIndex,
           decremetUpdateIndex,
           incrementUpdateIndex,
-          itemIndex: itemIndex + 1,
-          updateIndex: updateIndex + 1,
+          itemIndex: itemIndex + 1,       // To display 1 instead of 0 to the user
+          updateIndex: updateIndex + 1,   // To display 1 instead of 0 to the user
           itemsLength: items.length,
           updatesLength: updates.length
         }}
@@ -88,15 +92,18 @@ function App() {
           />
         </ListWrapper>
         <UpdateWrapper
-          heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : "65px"}
-          standAlone={viewMode === VIEW_MODES.FULL ? false : true}
+          heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : ACTION_BAR_HEIGHT}
+          standAlone={viewMode !== VIEW_MODES.FULL}
         >
           <UpdateView
+            key={update.id}
             handleChange={event => selectUpdate(event.target.value)}
             title={title}
             readTime={readTime}
             update={update}
             updates={updates}
+            showEdit={false} //Disabled until updates:write scope is granted to apps
+            onSave={(newValue) => { console.log(newValue); createNewUpdate(item.id, newValue); return true; }}
           />
         </UpdateWrapper>
       </FlexLayout>
