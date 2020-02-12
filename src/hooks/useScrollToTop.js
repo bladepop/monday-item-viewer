@@ -15,7 +15,7 @@ const useScrollToTop = (element, intervals = 5) => {
       } else clearTimeout(scrollAnimation);
     };
     return scrollToTop;
-  }, [element]);
+  }, [element, intervals]);
   return scrollToTopMemo;
 };
 
