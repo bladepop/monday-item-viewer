@@ -27,7 +27,8 @@ const useEditState = (value, onSave = () => true) => {
 };
 
 const UpdateView = ({ title, update, handleChange, updates, readTime, onSave }) => {
-  const [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit] = useEditState(update.body, onSave);
+  const body = update ? update.body : "";
+  const [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit] = useEditState(body, onSave);
 
   return (
     <UpdateViewWrapper>
@@ -51,5 +52,9 @@ UpdateView.propTypes = {
   readTime: PropTypes.number,
   onSave: PropTypes.func,
 };
+
+UpdateView.defaultProps = {
+  title: "There are no updates for this item..."
+}
 
 export default UpdateView;

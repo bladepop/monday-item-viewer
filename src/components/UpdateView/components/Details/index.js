@@ -6,6 +6,9 @@ import UpdateSelector from "./components/UpdateSelector";
 
 import Button from "../../../Button";
 
+const DEFAULT_AUTHOR_NAME = 'No name';
+const DEFAULT_AUTHOR_THUMB_IMAGE = 'https://cdn1.monday.com/dapulse_default_photo.png';
+
 const DetailsBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -45,16 +48,16 @@ const Details = ({
 }) => (
   <DetailsBarWrapper>
     <AuthorBar
-      name={update.creator.name}
-      photoThumbUrl={update.creator.photoThumbUrl}
-      readTime={readTime}
+      name={(update && update.creator) ? update.creator.name : DEFAULT_AUTHOR_NAME}
+      photoThumbUrl={(update && update.creator) ? update.creator.photoThumbUrl : DEFAULT_AUTHOR_THUMB_IMAGE}
+      readTime={readTime || 0}
     />
     <DetailsActionsWrapper>
-      <UpdateSelector
+      {updates.length ? <UpdateSelector
         handleChange={handleChange}
         updates={updates}
-        selectedValue={update.id}
-      />
+        selectedValue={update ? update.id : null}
+      /> : null}
 
       {isEditing ? (
         <React.Fragment>
