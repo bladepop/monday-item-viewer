@@ -119,7 +119,7 @@ function App() {
           ref={updateWrapperRef}
         >
           <UpdateView
-            key={update ? update.id || null}
+            key={update ? update.id : null}
             handleChange={event => selectUpdate(event.target.value)}
             title={title}
             readTime={readTime}
