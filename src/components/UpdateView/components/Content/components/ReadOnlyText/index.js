@@ -29,6 +29,7 @@ const ReadOnlyText = ({html, text}) => {
 
 ReadOnlyText.propTypes = {
     html: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }
 
 export default ReadOnlyText;
