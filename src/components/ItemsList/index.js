@@ -8,7 +8,6 @@ const ItemWrapper = styled.div`
   background: ${({ selected }) => (selected ? "#e5f4ff" : "#f5f6f8")};
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -23,6 +22,9 @@ const ItemWrapper = styled.div`
 
 const ItemName = styled.div`
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 0;
 `;
 
 const ItemColor = styled.div`
@@ -47,13 +49,16 @@ const GroupTitle = styled.div`
   font-weight: 300;
   overflow: hidden;
   white-space: nowrap;
+  color: ${({ color }) => color};
 `;
 
 const ItemsList = ({ groups, selectedItem, handleChange }) => (
   <React.Fragment>
     {Object.keys(groups).map(groupId => (
       <React.Fragment key={groupId}>
-        <GroupTitle>{groups[groupId].title}</GroupTitle>
+        <GroupTitle color={groups[groupId].color}>
+          {groups[groupId].title}
+        </GroupTitle>
         <React.Fragment>
           {groups[groupId].items.map(item => (
             <Item
@@ -61,7 +66,7 @@ const ItemsList = ({ groups, selectedItem, handleChange }) => (
               selected={item === selectedItem}
               name={item.name}
               color={item.group.color}
-              onClick={() => handleChange(item.name)}
+              onClick={() => handleChange(item.id)}
             />
           ))}
         </React.Fragment>

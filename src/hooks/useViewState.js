@@ -14,19 +14,17 @@ const useViewState = items => {
 
   const readTime = useReadTime(updateBody);
 
-  // TODO: Use ID instead of creation time
-  const selectUpdate = updateCreationTime => {
+  const selectUpdate = updateId => {
     for (let i = 0; i < updates.length; i++) {
-      if (updates[i].createdAt === updateCreationTime) {
+      if (updates[i].id === updateId) {
         setViewState({ updateIndex: i });
       }
     }
   };
 
-  // TODO: Use ID instead of name
-  const selectItem = itemName => {
+  const selectItem = itemId => {
     for (let i = 0; i < items.length; i++) {
-      if (items[i].name === itemName) {
+      if (items[i].id === itemId) {
         setViewState({ itemIndex: i, updateIndex: 0 });
       }
     }
@@ -35,8 +33,6 @@ const useViewState = items => {
   const groups = useMemo(
     () =>
       items.reduce((accumulator, item) => {
-        // console.log(item);
-        // debugger;
         accumulator[item.group.id] = accumulator[item.group.id] || {
           ...item.group,
           items: []

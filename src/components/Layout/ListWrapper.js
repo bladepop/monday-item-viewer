@@ -10,6 +10,8 @@ const ListWrapper = styled.div`
   padding: 12px;
   margin: 0;
 
+  display: ${({hide}) => hide ? 'none' : 'block'};
+
   ${scrollBarStyle}
 
 `;

@@ -5,9 +5,9 @@ import styled from "styled-components";
 const Select = styled.select`
     border: none;
     background: #f7f7f7;
-    padding: 12px 10px;    
+    padding: 0 10px;    
     color: #565656;
-    height: 48px;
+    height: 32px;
     font-family: Roboto, serif;
     width: 200px;
 
@@ -24,7 +24,7 @@ const Option = styled.option`
 const UpdateSelector = ({ handleChange, updates, selectedValue }) => (
     <Select onChange={handleChange} value={selectedValue}>
       {updates.map(update => (
-        <Option key={update.createdAt} value={update.createdAt}>
+        <Option key={update.id} value={update.id}>
           {new Date(update.createdAt).toLocaleString()}
         </Option>
       ))}

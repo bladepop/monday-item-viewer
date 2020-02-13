@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import monday from "monday-sdk";
+
+const openItem = (itemId) => { monday.execute("openItemCard", { itemId }); };
 
 const useMondayBoardItems = (client_id) => {
   const [context, setContext] = useState({});
@@ -11,7 +13,7 @@ const useMondayBoardItems = (client_id) => {
   }, [client_id]);
 
   const [items, setItems] = useState([]);
-
+  //TODO: Handle errors
   useEffect(() => {
     if (!context.boardId) return;
     monday
@@ -45,9 +47,40 @@ const useMondayBoardItems = (client_id) => {
       });
   }, [context.boardId]);
 
+  const memoizedCreateNewUpdate = useCallback((itemId, updateContent) => {
+    monday
+    .api(
+      `mutation {
+        createdUpdate: create_update(body: "${updateContent}", item_id: ${itemId}) {
+          id
+          body
+          createdAt: created_at
+          creator {
+            name
+            photoThumbUrl: photo_thumb
+          }
+        }
+      }
+      `
+    )
+    .then(res => {
+      const createdUpdate = res.data.createdUpdate;
+      //TODO: Handle errors
+      //TODO: Move to better data structure (key-value)
+      const newItems = items.map(item => {
+        let newItem = item;
+        if (item.id === itemId) {
+          newItem = { ...item, updates: [createdUpdate, ...item.updates] };
+        }
+        return newItem;
+      })
+      setItems(newItems);
+    });
+  }, [items, setItems])
+
   const isReady = items.length > 0;
 
-  return [items, isReady];
+  return [items, isReady, openItem, memoizedCreateNewUpdate];
 };
 
 export default useMondayBoardItems;

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Markdown from "react-markdown";
 import toc from "remark-toc"
 import CodeBlock from "./code-block";
 
-
 const ReadOnlyText = ({html, text}) => {
+    
     if (text.startsWith("#!markdown")){
         return <div>
             <Markdown
@@ -17,7 +17,14 @@ const ReadOnlyText = ({html, text}) => {
                 />
       </div>
     }
-    return <div dangerouslySetInnerHTML={{ __html: html }}></div>;
+    
+    const formattedHtml = useMemo(() => {
+        return html.replace(/```(.+?)```/gm, '<span class="inline-code">$1</span>');
+    },  [html]);
+
+    return (
+        <div dangerouslySetInnerHTML={{ __html: formattedHtml}}></div>
+    );
 };
 
 ReadOnlyText.propTypes = {
