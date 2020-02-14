@@ -8,10 +8,15 @@ const openItem = itemId => {
 const useMondayBoardItems = client_id => {
   const [context, setContext] = useState({});
   useEffect(() => {
-    monday.init(client_id);
-    monday.get("context").then(res => {
-      setContext(res.data);
-    });
+    try {
+      monday.init(client_id);
+      monday.get("context").then(res => {
+        setContext(res.data);
+      });
+    } catch (e) {
+      console.log('monday sdk failed to load', e);
+    }
+    
   }, [client_id]);
 
   const [items, setItems] = useState([]);
