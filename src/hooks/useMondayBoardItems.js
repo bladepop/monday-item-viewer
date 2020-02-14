@@ -1,9 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
 import monday from "monday-sdk";
 
-const openItem = (itemId) => { monday.execute("openItemCard", { itemId }); };
+const openItem = itemId => {
+  monday.execute("openItemCard", { itemId });
+};
 
-const useMondayBoardItems = (client_id) => {
+const useMondayBoardItems = client_id => {
   const [context, setContext] = useState({});
   useEffect(() => {
     monday.init(client_id);
@@ -31,7 +33,7 @@ const useMondayBoardItems = (client_id) => {
             updates {
               id
               body
-              text_body
+              textBody: text_body
               createdAt: created_at
               creator {
                 name
@@ -47,10 +49,11 @@ const useMondayBoardItems = (client_id) => {
       });
   }, [context.boardId]);
 
-  const memoizedCreateNewUpdate = useCallback((itemId, updateContent) => {
-    monday
-    .api(
-      `mutation {
+  const memoizedCreateNewUpdate = useCallback(
+    (itemId, updateContent) => {
+      monday
+        .api(
+          `mutation {
         createdUpdate: create_update(body: "${updateContent}", item_id: ${itemId}) {
           id
           body
@@ -62,21 +65,23 @@ const useMondayBoardItems = (client_id) => {
         }
       }
       `
-    )
-    .then(res => {
-      const createdUpdate = res.data.createdUpdate;
-      //TODO: Handle errors
-      //TODO: Move to better data structure (key-value)
-      const newItems = items.map(item => {
-        let newItem = item;
-        if (item.id === itemId) {
-          newItem = { ...item, updates: [createdUpdate, ...item.updates] };
-        }
-        return newItem;
-      })
-      setItems(newItems);
-    });
-  }, [items, setItems])
+        )
+        .then(res => {
+          const createdUpdate = res.data.createdUpdate;
+          //TODO: Handle errors
+          //TODO: Move to better data structure (key-value)
+          const newItems = items.map(item => {
+            let newItem = item;
+            if (item.id === itemId) {
+              newItem = { ...item, updates: [createdUpdate, ...item.updates] };
+            }
+            return newItem;
+          });
+          setItems(newItems);
+        });
+    },
+    [items, setItems]
+  );
 
   const isReady = items.length > 0;
 
