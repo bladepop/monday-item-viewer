@@ -1,5 +1,4 @@
 import React, { useRef, useCallback } from "react";
-import "typeface-roboto";
 
 import useMondayBoardItems from "./hooks/useMondayBoardItems";
 // import useMondayBoardItems from "./hooks/mockData";
@@ -22,11 +21,13 @@ const VIEW_MODES = {
   FULL: "full"
 };
 
-const ACTION_BAR_HEIGHT = '65px';
+const ACTION_BAR_HEIGHT = "65px";
 
 function App() {
   // Data Provider
-  const [items, isItemsReady, openItem, createNewUpdate] = useMondayBoardItems(CLIENT_ID);
+  const [items, isItemsReady, openItem, createNewUpdate] = useMondayBoardItems(
+    CLIENT_ID
+  );
   const updateWrapperRef = useRef(null);
   const scrollToTop = useScrollToTop(updateWrapperRef.current);
 
@@ -54,8 +55,10 @@ function App() {
     VIEW_MODES.MOBILE
   );
 
-  const openCurrentItem = useCallback(() => { openItem(item.id) }, [openItem, item]);
-  
+  const openCurrentItem = useCallback(() => {
+    openItem(item.id);
+  }, [openItem, item]);
+
   const memoDecrementItemIndex = useCallback(() => {
     decrementItemIndex();
     scrollToTop();
@@ -77,7 +80,11 @@ function App() {
   }, [scrollToTop, incrementUpdateIndex]);
 
   if (!isItemsReady) {
-    return <Loader text={"Loading board content"} />;
+    return (
+      <AppContainer>
+        <Loader text={"Loading board content"} />
+      </AppContainer>
+    );
   }
 
   //TODO: Fix this
@@ -98,8 +105,8 @@ function App() {
           incrementItemIndex: memoIncrementItemIndex,
           decremetUpdateIndex: memoDecremetUpdateIndex,
           incrementUpdateIndex: memoIncrementUpdateIndex,
-          itemIndex: itemIndex + 1,       // To display 1 instead of 0 to the user
-          updateIndex: updateIndex + 1,   // To display 1 instead of 0 to the user
+          itemIndex: itemIndex + 1, // To display 1 instead of 0 to the user
+          updateIndex: updateIndex + 1, // To display 1 instead of 0 to the user
           itemsLength: items.length,
           updatesLength: updates.length
         }}
@@ -114,7 +121,9 @@ function App() {
           />
         </ListWrapper>
         <UpdateWrapper
-          heightBuffer={viewMode === VIEW_MODES.FULL ? "0px" : ACTION_BAR_HEIGHT}
+          heightBuffer={
+            viewMode === VIEW_MODES.FULL ? "0px" : ACTION_BAR_HEIGHT
+          }
           standAlone={viewMode !== VIEW_MODES.FULL}
           ref={updateWrapperRef}
         >
@@ -127,7 +136,11 @@ function App() {
             updates={updates}
             showEdit={false} //Disabled until updates:write scope is granted to apps
             onOpenItem={openCurrentItem}
-            onSave={(newValue) => { console.log(newValue); createNewUpdate(item.id, newValue); return true; }}
+            onSave={newValue => {
+              console.log(newValue);
+              createNewUpdate(item.id, newValue);
+              return true;
+            }}
           />
         </UpdateWrapper>
       </FlexLayout>
