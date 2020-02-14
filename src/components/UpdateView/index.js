@@ -23,23 +23,62 @@ const useEditState = (value, onSave = () => true) => {
   };
   const saveEdit = () => onSave(editedValue) && cancelEdit();
 
-  return [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit];
+  return [
+    value,
+    editedValue,
+    setEditedValue,
+    isEditing,
+    startEdit,
+    cancelEdit,
+    saveEdit
+  ];
 };
 
-const UpdateView = ({ title, update, handleChange, updates, readTime, onSave, showEdit, onOpenItem }) => {
+const UpdateView = ({
+  title,
+  update,
+  handleChange,
+  updates,
+  readTime,
+  onSave,
+  showEdit,
+  onOpenItem
+}) => {
   const body = update ? update.body : "";
-  const [value, editedValue, setEditedValue, isEditing, startEdit, cancelEdit, saveEdit] = useEditState(body, onSave);
+  const textBody = update ? update.textBody : "";
+  const [
+    value,
+    editedValue,
+    setEditedValue,
+    isEditing,
+    startEdit,
+    cancelEdit,
+    saveEdit
+  ] = useEditState(body, onSave);
 
   return (
     <UpdateViewWrapper>
       <Title>{title}</Title>
       <Details
-        {...{ update, handleChange, updates, readTime, isEditing, showEdit, onOpenItem }}
+        {...{
+          update,
+          handleChange,
+          updates,
+          readTime,
+          isEditing,
+          showEdit,
+          onOpenItem
+        }}
         onEditStartClick={startEdit}
         onEditCancelClick={cancelEdit}
         onEditSaveClick={saveEdit}
       />
-      <Content html={isEditing ? editedValue : value} isEditing={isEditing} onChange={setEditedValue} />
+      <Content
+        html={isEditing ? editedValue : value}
+        isEditing={isEditing}
+        onChange={setEditedValue}
+        text={textBody}
+      />
     </UpdateViewWrapper>
   );
 };
@@ -50,11 +89,11 @@ UpdateView.propTypes = {
   handleChange: PropTypes.func,
   updates: PropTypes.arrayOf(PropTypes.shape({ createdAt: PropTypes.string })),
   readTime: PropTypes.number,
-  onSave: PropTypes.func,
+  onSave: PropTypes.func
 };
 
 UpdateView.defaultProps = {
   title: "There are no updates for this item..."
-}
+};
 
 export default UpdateView;

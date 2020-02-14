@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import codeHighlightCss from "./codeHighlightCss";
 
 const ContentWrapper = styled.div`
   * {
@@ -51,14 +52,23 @@ const ContentWrapper = styled.div`
 
     table {
       width: 100%;
-      border-left: 1px solid #969696;
-      border-top: 1px solid #969696;
+      border-left: 1px solid #d0d0d0;
+      border-top: 1px solid #d0d0d0;
       border-spacing: 0;
       margin: 8px 0;
 
+      th {
+        padding-left: 8px;
+        border-bottom: 1px solid #d0d0d0;
+        border-right: 1px solid #d0d0d0;
+        background: #f1f1f1;
+        text-align: left;
+        font-weight: 400;
+      }
+
       td {
-        border-right: 1px solid #969696;
-        border-bottom: 1px solid #969696;
+        border-right: 1px solid #d0d0d0;
+        border-bottom: 1px solid #d0d0d0;
         padding: 4px 12px;
       }
     }
@@ -109,6 +119,15 @@ const ContentWrapper = styled.div`
       background: #fbcb00; /* WebKit/Blink Browsers */
     }
 
+    pre code.hljs.hljs {
+      ${codeHighlightCss}
+    }
+
+    code {
+      display: inline;
+      padding: 0;
+    }
+
     pre {
       background: rgb(245, 245, 245) !important;
       padding: 24px !important;
@@ -116,7 +135,7 @@ const ContentWrapper = styled.div`
 
       &,
       & * {
-        color: rgba(0, 0, 0, 0.84) !important;
+        color: rgba(0, 0, 0, 0.84);
         font-size: 14px;
         font-family: monospace;
         overflow: auto !important;
@@ -137,10 +156,9 @@ const ContentWrapper = styled.div`
     }
 
     img {
-      @media screen and (min-width: 600px) {
-        margin: 25px 115px;
-      }
-      max-width: 100vw;
+      max-width: 90%;
+      margin: 25px auto;
+      display: block;
       box-shadow: 0 0 10px 0px #8c8c8c;
     }
 
