@@ -75,9 +75,6 @@ const ContentWrapper = styled.div`
 
     .text-center {
       text-align: center;
-      img {
-        margin: 0;
-      }
     }
 
     .ql-editor {
